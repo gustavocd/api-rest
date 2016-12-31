@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
+	"github.com/gustavocd/api-rest/routes"
 	"log"
 	"net/http"
-	"github.com/gustavocd/api-rest/routes"
-	"github.com/gorilla/mux"
 )
 
 //Entry point of program
@@ -18,7 +18,7 @@ func main() {
 	r.HandleFunc("/api/notes/{id}", routes.DeleteNoteHandler).Methods("DELETE")
 
 	server := &http.Server{
-		Addr: ":8080",
+		Addr:    ":8080",
 		Handler: r,
 	}
 
