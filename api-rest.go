@@ -10,8 +10,6 @@ import (
 //Entry point of program
 func main() {
 	r := mux.NewRouter().StrictSlash(false)
-	fs := http.FileServer(http.Dir("public"))
-	r.Handle("/public/", fs)
 	r.HandleFunc("/api/notes", routes.GetNoteHandler).Methods("GET")
 	r.HandleFunc("/api/notes", routes.PostNoteHandler).Methods("POST")
 	r.HandleFunc("/api/notes/{id}", routes.PutNoteHandler).Methods("PUT")
