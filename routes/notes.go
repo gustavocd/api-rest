@@ -2,21 +2,22 @@ package routes
 
 import (
 	"encoding/json"
-	"github.com/gorilla/mux"
-	"github.com/gustavocd/api-rest/models"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/gorilla/mux"
+	"github.com/gustavocd/api-rest/models"
 )
 
 //Store for the Notes collection
 var noteStore = make(map[string]models.Note)
 
 //Variable to generate key for the collection
-var id int = 0
+var id int
 
-//HTTP Post - /api/notes
+// PostNoteHandler HTTP Post - /api/notes
 func PostNoteHandler(w http.ResponseWriter, r *http.Request) {
 	var note models.Note
 	//Decode the incoming Note json
@@ -39,7 +40,7 @@ func PostNoteHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(j)
 }
 
-//HTTP Get - /api/notes
+// GetNoteHandler HTTP Get - /api/notes
 func GetNoteHandler(w http.ResponseWriter, r *http.Request) {
 	var notes []models.Note
 	for _, v := range noteStore {
@@ -54,7 +55,7 @@ func GetNoteHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(j)
 }
 
-//HTTP Put - /api/notes/{id}
+// PutNoteHandler HTTP Put - /api/notes/{id}
 func PutNoteHandler(w http.ResponseWriter, r *http.Request) {
 	var err error
 	vars := mux.Vars(r)
@@ -76,7 +77,7 @@ func PutNoteHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-//HTTP Delete - /api/notes/{id}
+// DeleteNoteHandler HTTP Delete - /api/notes/{id}
 func DeleteNoteHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	k := vars["id"]

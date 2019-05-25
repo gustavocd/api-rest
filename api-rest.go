@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"github.com/gustavocd/api-rest/routes"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/gustavocd/api-rest/routes"
 )
 
-//Entry point of program
+// Entry point of program
 func main() {
 	r := mux.NewRouter().StrictSlash(false)
 	r.HandleFunc("/api/notes", routes.GetNoteHandler).Methods("GET")
