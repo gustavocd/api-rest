@@ -1,13 +1,18 @@
 # Basic REST API with Go
 
-This is a **basic** RESTful Api built using the go programming language.
+This is a **basic** RESTful Api built using Golang.
 
-## Usage
-1. Download or clone the repository
-2. `cd <folder-name>` and then press enter
-3. Type the command `go build api-rest.go`
-4. Execute the binaries `api-rest.exe` on Windows and `./api-rest` on Linux and Mac
-5. Star making request to the following end points with your favourite tool
+## Clone and run the server
+
+```bash
+$ git clone https://github.com/gustavocd/api-rest.git && cd api-rest
+```
+
+```bash
+$ go run api-rest.go
+```
+
+## Start making request to the following endpoints with your favorite REST client
     * `/api/notes` -> to get all the notes
     * `/api/notes` -> to create a note
     * `/api/notes/{id}` -> to edit a note
