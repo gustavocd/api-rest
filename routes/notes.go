@@ -25,7 +25,7 @@ func PostNoteHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	note.CreatedOn = time.Now()
+	note.CreatedOn = time.Now().Format(time.RFC3339)
 	id++
 	k := strconv.Itoa(id)
 	noteStore[k] = note
