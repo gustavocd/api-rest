@@ -13,4 +13,4 @@ This is a **basic** RESTful Api built using the go programming language.
     * `/api/notes/{id}` -> to edit a note
     * `/api/notes/{id}` -> to delete a note
  
- Note: check the source code(models/note.go) to get the correct structure to make the json object :smile
+ Note: check the source code(models/note.go) to get the correct structure to make the json object :smile:
