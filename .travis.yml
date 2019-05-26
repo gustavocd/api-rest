@@ -2,7 +2,10 @@ language: go
 
 go:
   - 1.12.x
-  - master
+
+branches:
+  only: 
+    - master
 
 env:
   - GO111MODULE=on
