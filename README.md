@@ -1,6 +1,6 @@
-# Basic REST API with Go [![Build Status](https://travis-ci.com/gustavocd/api-rest.svg?branch=master)](https://travis-ci.com/gustavocd/api-rest)
+# Basic REST API with Go ![](https://github.com/gustavocd/api-rest/workflows/api-rest/badge.svg)
 
-This is a **basic** RESTful Api built using Golang.
+This is a **simple** REST API built with Go.
 
 ## Clone and run the server
 
