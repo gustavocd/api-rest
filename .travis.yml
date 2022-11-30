@@ -1,7 +1,7 @@
 language: go
 
 go:
-  - 1.12.x
+  - 1.19.x
 
 branches:
   only: 
@@ -11,4 +11,4 @@ env:
   - GO111MODULE=on
 
 script:
-  - go test -v ./...
+  - make test

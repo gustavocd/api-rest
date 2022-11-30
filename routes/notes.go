@@ -11,10 +11,10 @@ import (
 	"github.com/gustavocd/api-rest/models"
 )
 
-//Store for the Notes collection
+// Store for the Notes collection
 var noteStore = make(map[string]models.Note)
 
-//Variable to generate key for the collection
+// Variable to generate key for the collection
 var id int
 
 // PostNoteHandler HTTP Post - /api/notes

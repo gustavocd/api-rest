@@ -30,7 +30,7 @@ func TestGetNotes(t *testing.T) {
 
 func TestPostNote(t *testing.T) {
 	t.Run("should create a note when the sent data is correct", func(t *testing.T) {
-		var note = []byte(`{"title": "Primera nota","description": "Esta es la descripcion de mi primera nota"}`)
+		var note = []byte(`{"title": "Primera nota","description": "Esta es la descripción de mi primera nota"}`)
 		r, err := http.NewRequest("POST", "/api/notes", bytes.NewBuffer(note))
 		if err != nil {
 			t.Fatal(err)
@@ -42,7 +42,7 @@ func TestPostNote(t *testing.T) {
 		if status := w.Code; status != http.StatusCreated {
 			t.Errorf("handler returned wrong status code: got %d want %d", status, http.StatusCreated)
 		}
-		expected := fmt.Sprintf(`{"title":"Primera nota","description":"Esta es la descripcion de mi primera nota","createdon":"%v"}`, time.Now().Format(time.RFC3339))
+		expected := fmt.Sprintf(`{"title":"Primera nota","description":"Esta es la descripción de mi primera nota","createdOn":"%v"}`, time.Now().Format(time.RFC3339))
 		if w.Body.String() != expected {
 			t.Errorf("handler returned unexpected body: got %s want %s", w.Body.String(), expected)
 		}

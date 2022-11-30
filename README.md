@@ -5,11 +5,11 @@ This is a **basic** RESTful Api built using Golang.
 ## Clone and run the server
 
 ```bash
-$ git clone https://github.com/gustavocd/api-rest.git && cd api-rest
+git clone https://github.com/gustavocd/api-rest.git && cd api-rest
 ```
 
 ```bash
-$ go run api-rest.go
+make run
 ```
 
 ## Available endpoints
