@@ -1,0 +1,27 @@
+name: api-rest
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Run Linter
+        uses: golangci/golangci-lint-action@v3
+        with:
+          # Optional: version of golangci-lint to use in form of v1.2 or v1.2.3 or `latest` to use the latest version
+          version: latest
+
+      - name: Run Tests
+        run: make test

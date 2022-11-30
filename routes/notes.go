@@ -37,7 +37,10 @@ func PostNoteHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	w.Write(j)
+	_, err = w.Write(j)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // GetNoteHandler HTTP Get - /api/notes
@@ -52,7 +55,10 @@ func GetNoteHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	w.WriteHeader(http.StatusOK)
-	w.Write(j)
+	_, err = w.Write(j)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // PutNoteHandler HTTP Put - /api/notes/{id}

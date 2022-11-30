@@ -22,5 +22,8 @@ func main() {
 	}
 
 	log.Println("Server running at http://localhost:8080")
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
 }
