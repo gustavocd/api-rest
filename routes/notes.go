@@ -7,7 +7,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gorilla/mux"
 	"github.com/gustavocd/api-rest/models"
 )
 
@@ -20,7 +19,7 @@ var id int
 // PostNoteHandler HTTP Post - /api/notes
 func PostNoteHandler(w http.ResponseWriter, r *http.Request) {
 	var note models.Note
-	//Decode the incoming Note json
+	// Decode the incoming Note json
 	err := json.NewDecoder(r.Body).Decode(&note)
 	if err != nil {
 		panic(err)
@@ -28,6 +27,7 @@ func PostNoteHandler(w http.ResponseWriter, r *http.Request) {
 	note.CreatedOn = time.Now().Format(time.RFC3339)
 	id++
 	k := strconv.Itoa(id)
+	note.ID = k
 	noteStore[k] = note
 
 	j, err := json.Marshal(note)
@@ -64,29 +64,31 @@ func GetNoteHandler(w http.ResponseWriter, r *http.Request) {
 // PutNoteHandler HTTP Put - /api/notes/{id}
 func PutNoteHandler(w http.ResponseWriter, r *http.Request) {
 	var err error
-	vars := mux.Vars(r)
-	k := vars["id"]
+	k := r.PathValue("id")
 	var noteToUpd models.Note
-	//Decode the incoming Note json
+	// Decode the incoming Note JSON
 	err = json.NewDecoder(r.Body).Decode(&noteToUpd)
 	if err != nil {
 		panic(err)
 	}
-	if note, ok := noteStore[k]; ok {
-		noteToUpd.CreatedOn = note.CreatedOn
-		//delete existing item and add the updated item
-		delete(noteStore, k)
-		noteStore[k] = noteToUpd
-	} else {
+
+	note, ok := noteStore[k]
+	if !ok {
 		log.Printf("Could not find key of Note %s to delete", k)
+		return
 	}
+
+	noteToUpd.CreatedOn = note.CreatedOn
+	noteToUpd.ID = note.ID
+	// Delete existing item and add the updated item
+	delete(noteStore, k)
+	noteStore[k] = noteToUpd
 	w.WriteHeader(http.StatusNoContent)
 }
 
 // DeleteNoteHandler HTTP Delete - /api/notes/{id}
 func DeleteNoteHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	k := vars["id"]
+	k := r.PathValue("id")
 	//Remove from store
 	if _, ok := noteStore[k]; ok {
 		//delete the existing item

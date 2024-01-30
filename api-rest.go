@@ -4,21 +4,19 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/gustavocd/api-rest/routes"
 )
 
-// Entry point of program
 func main() {
-	r := mux.NewRouter().StrictSlash(false)
-	r.HandleFunc("/api/notes", routes.GetNoteHandler).Methods("GET")
-	r.HandleFunc("/api/notes", routes.PostNoteHandler).Methods("POST")
-	r.HandleFunc("/api/notes/{id}", routes.PutNoteHandler).Methods("PUT")
-	r.HandleFunc("/api/notes/{id}", routes.DeleteNoteHandler).Methods("DELETE")
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /api/notes", routes.GetNoteHandler)
+	mux.HandleFunc("POST /api/notes", routes.PostNoteHandler)
+	mux.HandleFunc("PUT /api/notes/{id}", routes.PutNoteHandler)
+	mux.HandleFunc("DELETE /api/notes/{id}", routes.DeleteNoteHandler)
 
 	server := &http.Server{
 		Addr:    ":8080",
-		Handler: r,
+		Handler: mux,
 	}
 
 	log.Println("Server running at http://localhost:8080")

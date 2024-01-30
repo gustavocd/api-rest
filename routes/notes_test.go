@@ -42,7 +42,7 @@ func TestPostNote(t *testing.T) {
 		if status := w.Code; status != http.StatusCreated {
 			t.Errorf("handler returned wrong status code: got %d want %d", status, http.StatusCreated)
 		}
-		expected := fmt.Sprintf(`{"title":"Primera nota","description":"Esta es la descripción de mi primera nota","createdOn":"%v"}`, time.Now().Format(time.RFC3339))
+		expected := fmt.Sprintf(`{"id":"1","title":"Primera nota","description":"Esta es la descripción de mi primera nota","createdOn":"%v"}`, time.Now().Format(time.RFC3339))
 		if w.Body.String() != expected {
 			t.Errorf("handler returned unexpected body: got %s want %s", w.Body.String(), expected)
 		}
